@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="462.0" style="-fx-background-color: #b2b9a3;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hibernate1an_isaac_gonzalez.Controller.MultaController">
+    <children>
+        <TextField fx:id="matriculaTF" layoutX="162.0" layoutY="69.0" />
+        <TextField fx:id="idmultaTF" layoutX="162.0" layoutY="128.0" />
+        <TextField fx:id="precioTF" layoutX="162.0" layoutY="190.0" />
+        <TableView fx:id="tablaMultas" layoutX="37.0" layoutY="337.0" onMouseClicked="#seleccionarCoche" prefHeight="234.0" prefWidth="389.0">
+            <columns>
+                <TableColumn fx:id="colMulta" prefWidth="116.0" text="ID MULTA" />
+                <TableColumn fx:id="colPrecio" prefWidth="135.0" text="PRECIO" />
+                <TableColumn fx:id="colFecha" prefWidth="137.0" text="FECHA" />
+            </columns>
+        </TableView>
+        <Button layoutX="38.0" layoutY="299.0" mnemonicParsing="false" onAction="#onInsertar" prefHeight="25.0" prefWidth="80.0" text="Insertar" />
+        <Button layoutX="243.0" layoutY="299.0" mnemonicParsing="false" onAction="#onModificar" prefHeight="25.0" prefWidth="80.0" text="Modificar" />
+        <Button layoutX="144.0" layoutY="299.0" mnemonicParsing="false" onAction="#onEliminar" prefHeight="25.0" prefWidth="80.0" text="Eliminar" />
+        <Label layoutX="37.0" layoutY="73.0" text="Matricula" />
+        <Label layoutX="37.0" layoutY="132.0" text="Identificador Multa" />
+        <Label layoutX="38.0" layoutY="194.0" text="Precio" />
+        <Label layoutX="37.0" layoutY="258.0" text="FECHA" />
+        <Button layoutX="346.0" layoutY="299.0" mnemonicParsing="false" onAction="#onLimpiar" prefHeight="25.0" prefWidth="80.0" text="Limpiar" />
+      <DatePicker fx:id="fechaTF" layoutX="162.0" layoutY="254.0" />
+    </children>
+</AnchorPane>
