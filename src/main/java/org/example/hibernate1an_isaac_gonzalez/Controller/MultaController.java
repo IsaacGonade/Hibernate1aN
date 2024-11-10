@@ -58,22 +58,22 @@ public class MultaController implements Initializable {
     //metodo carga los datos desde el inicio
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String matricula = matriculaTF.getText();
-        cargarDatos(matricula);
+        cargarDatos(cocheMulta);
     }
 
-    public void cargarDatos(String matricula) {
+    public void cargarDatos(Coche coche) {
         //limpia los campos
         tablaMultas.getItems().clear();
         try {
-            matriculaTF.setText(matricula);
+            cocheMulta = coche;
+            matriculaTF.setText(cocheMulta.getMatricula());
             //cargo los datos en la tabla
-            List<Multa> multas = multaDAOimp.obtenerMulta(session, matricula);
+            List<Multa> multas = multaDAOimp.obtenerMulta(session, cocheMulta.getMatricula());
             tablaMultas.setItems(FXCollections.observableList(multas));
 
             //cargamos los datos en las columnas
             colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-            colMulta.setCellValueFactory(new PropertyValueFactory<>("id_multa"));
+            colMulta.setCellValueFactory(new PropertyValueFactory<>("id"));
             colPrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -101,7 +101,7 @@ public class MultaController implements Initializable {
             multaDAOimp.eliminarMulta(multa, session);
 
             //cargo los datos para refrescar la tabla
-            cargarDatos(matriculaTF.getText());
+            cargarDatos(cocheMulta);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -130,7 +130,7 @@ public class MultaController implements Initializable {
 
             multaDAOimp.insertarMulta(multa, session);
 
-            cargarDatos(matriculaTF.getText());
+            cargarDatos(cocheMulta);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -169,7 +169,7 @@ public class MultaController implements Initializable {
 
             //MultaDAOimp.modificarMulta(multaSeleccionada, multa, session);
 
-            cargarDatos(matriculaTF.getText());
+            cargarDatos(cocheMulta);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }

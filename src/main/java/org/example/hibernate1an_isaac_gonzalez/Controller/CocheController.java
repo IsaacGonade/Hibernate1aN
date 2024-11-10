@@ -207,14 +207,14 @@ public class CocheController implements Initializable {
         if (matriculaTF.getText().isEmpty()){
             Alerts.mostrarError("Debes seleccionar una matricula");
         } else {
-            String matricula = matriculaTF.getText();
+            Coche coche = cocheseleccionado;
             //carga el siguiente formulario
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource("Multa.fxml"));
             Stage newStage = new Stage();
             newStage.setScene(new Scene(loader.load()));
             MultaController multaController = loader.getController();
-            multaController.cargarDatos(matricula);
+            multaController.cargarDatos(coche);
             newStage.sizeToScene();
             newStage.show();
             Stage currentStage = (Stage) ventanaGestion.getScene().getWindow();
