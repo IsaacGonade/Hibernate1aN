@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "coches")
 public class Coche implements Serializable {
-    //atributos de la clase
+    //atributos de la clase coche
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

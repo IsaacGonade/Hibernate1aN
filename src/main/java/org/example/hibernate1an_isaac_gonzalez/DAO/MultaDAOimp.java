@@ -8,12 +8,14 @@ import org.hibernate.Transaction;
 import java.util.List;
 
 public class MultaDAOimp implements MultaDAO{
+
+    //metodo para insertar una multa
     @Override
     public void insertarMulta(Multa multa, Session session) {
         Transaction transaction = null;
         try{
-            //guardo el nuevo coche
             transaction = session.beginTransaction();
+            //guardo la nueva multa
             session.save(multa);
             transaction.commit();
             session.clear();
@@ -28,14 +30,14 @@ public class MultaDAOimp implements MultaDAO{
         try {
             transaction = session.beginTransaction();
 
-            //Selecciono el id del coche viejo
+            //Selecciono el id de la multa anterior
             Multa multaSeleccionada = session.get(Multa.class, multaVieja.getId());
 
             //Cambio los campos por los nuevos
             multaSeleccionada.setPrecio(multaNueva.getPrecio());
             multaSeleccionada.setFecha(multaNueva.getFecha());
 
-            //actualizo el coche
+            //actualizo la multa
             session.update(multaSeleccionada);
             transaction.commit();
             session.clear();
@@ -53,7 +55,7 @@ public class MultaDAOimp implements MultaDAO{
             transaction = session.beginTransaction();
             //selecciono el id de la multa seleccionada en la tabla
             Multa multaSeleccionada = session.get(Multa.class, multa.getId());
-            //elimino la multa seleccionado
+            //elimino la multa seleccionada
             session.delete(multaSeleccionada);
             transaction.commit();
             session.clear();
@@ -69,7 +71,7 @@ public class MultaDAOimp implements MultaDAO{
         Transaction transaction = null;
         List<Multa> multas = null;
         try{
-            //obtengo todos los coches y los muestro en la tabla
+            //obtengo todos los coches y devuelvo una lista que mostrare en la tabla
             transaction = session.beginTransaction();
             multas = session.createQuery("from Multa where matricula= '" + matricula + "'", Multa.class).getResultList();
             transaction.commit();

@@ -70,6 +70,7 @@ public class CocheController implements Initializable {
         cargarDatos();
     }
 
+    //cargo los datos en la tabla
     public void cargarDatos() {
         //limpia los campos
         tablaCoches.getItems().clear();
@@ -123,7 +124,6 @@ public class CocheController implements Initializable {
     @FXML
     void onInsertar(ActionEvent event) {
         String matricula = matriculaTF.getText();
-
         //valido que el campo de la matrícula no este vacio y que cumpla con los requisitos
         if (matricula.isEmpty()) {
             Alerts.mostrarError("La matricula es un campo obligatorio");
@@ -149,14 +149,17 @@ public class CocheController implements Initializable {
                 return;
             }
 
+            //llamo al metodo
             cocheDAOImp.insertarCoche(coche, session);
 
+            //refresco la tabla
             cargarDatos();
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
 
+    //boton para reiniciar los campos
     @FXML
     void onLimpiar(ActionEvent event) {
         marcaTF.setText("");
@@ -179,6 +182,7 @@ public class CocheController implements Initializable {
             return;
         }
 
+        //recojo los datos de los campos de texto y los guardo en un nuevo objeto
         String marca = marcaTF.getText();
         String modelo = modeloTF.getText();
         String tipo = cbTipo.getSelectionModel().getSelectedItem();
@@ -187,21 +191,24 @@ public class CocheController implements Initializable {
         try {
             //alerta para confirmar la accion
             Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmacion.setTitle("¿Añadir coche?");
+            confirmacion.setTitle("¿Modificar coche?");
             confirmacion.setContentText("¿Estás seguro?");
             Optional<ButtonType> respuesta = confirmacion.showAndWait();
             if (respuesta.get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE){
                 return;
             }
 
+            //llamo al metodo
             cocheDAOImp.modificarCoche(cocheseleccionado, coche, session);
 
+            //refresco la tabla
             cargarDatos();
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
 
+    //boton para cambiar el formulario
     @FXML
     void onVerMultas(ActionEvent event) throws IOException {
         if (matriculaTF.getText().isEmpty()){
@@ -235,6 +242,4 @@ public class CocheController implements Initializable {
         cocheseleccionado = tablaCoches.getSelectionModel().getSelectedItem();
         cargarCoche(cocheseleccionado);
     }
-
 }
-

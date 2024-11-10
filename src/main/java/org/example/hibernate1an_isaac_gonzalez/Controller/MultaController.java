@@ -109,8 +109,8 @@ public class MultaController implements Initializable {
 
     @FXML
     void onInsertar(ActionEvent event) {
-        if (precioTF.getText().isEmpty() || fechaTF.getValue()== null || idmultaTF.getText().isEmpty()) {
-            Alerts.mostrarError("Debes rellenar todos los campos");
+        if (precioTF.getText().isEmpty() || fechaTF.getValue()== null) {
+            Alerts.mostrarError("Debes rellenar los campos de precio y fecha");
             return;
         }
         //recojo los datos de los campos de texto y los guardo en un nuevo objeto
@@ -128,14 +128,18 @@ public class MultaController implements Initializable {
                 return;
             }
 
+            //llamo al metodo
             multaDAOimp.insertarMulta(multa, session);
 
+            //refresco la tabla
             cargarDatos(cocheMulta);
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
 
+
+    //metodo para reiniciar los campos
     @FXML
     void onLimpiar(ActionEvent event) {
         idmultaTF.setText("");
@@ -146,17 +150,17 @@ public class MultaController implements Initializable {
 
     @FXML
     void onModificar(ActionEvent event) {
-        //valido que el campo de la matrícula no este vacio y que cumpla con los requisitos
-
-        if (precioTF.getText().isEmpty()) {
-            Alerts.mostrarError("El precio es un campo obligatorio");
+        //valido que el campo de la matrícula no este vacio
+        if (precioTF.getText().isEmpty() || fechaTF.getValue()== null) {
+            Alerts.mostrarError("Debes rellenar los campos de precio y fecha");
             return;
         }
+        //recojo los datos de los campos de texto y los guardo en un nuevo objeto
         int idmulta = Integer.parseInt(idmultaTF.getText());
         int precio = Integer.parseInt(precioTF.getText());
         LocalDate fecha = fechaTF.getValue();
-        Multa multa = new Multa(idmulta, cocheMulta, fecha, precio);
 
+        Multa multa = new Multa(idmulta, cocheMulta, fecha, precio);
         try {
             //alerta para confirmar la accion
             Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION);
@@ -166,9 +170,10 @@ public class MultaController implements Initializable {
             if (respuesta.get().getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE){
                 return;
             }
-
+            //llamo al metodo
             MultaDAOimp.modificarMulta(multaSeleccionada, multa, session);
 
+            //refresco la tabla
             cargarDatos(cocheMulta);
         } catch (Exception e){
             System.out.println(e.getMessage());
@@ -183,7 +188,7 @@ public class MultaController implements Initializable {
         fechaTF.setValue(multa.getFecha());
     }
 
-
+    //metodo que carga en los campos la multa seleccionada en la tabla
     @FXML
     void seleccionarMulta(MouseEvent event) {
         multaSeleccionada = tablaMultas.getSelectionModel().getSelectedItem();

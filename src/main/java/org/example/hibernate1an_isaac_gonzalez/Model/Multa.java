@@ -7,6 +7,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "multas")
 public class Multa implements Serializable {
+    //creo los atributos de la clase multas
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_multa")
@@ -18,8 +19,9 @@ public class Multa implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "matricula", referencedColumnName = "matricula")
-    private Coche coche;
+    private Coche coche; //muchas multas pueden pertenecer a un coche
 
+    //constructores
     public Multa() {
     }
 
@@ -36,6 +38,8 @@ public class Multa implements Serializable {
         this.coche = coche;
     }
 
+
+    //getter and setter
     public int getId() {
         return id;
     }

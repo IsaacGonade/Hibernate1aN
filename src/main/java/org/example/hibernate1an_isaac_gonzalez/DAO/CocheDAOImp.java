@@ -72,7 +72,7 @@ public class CocheDAOImp implements CocheDAO{
         Transaction transaction = null;
         List<Coche> coches = null;
         try{
-            //obtengo todos los coches y los muestro en la tabla
+            //obtengo todos los coches y los guardo en una lista
             transaction = session.beginTransaction();
             coches = session.createQuery("from Coche", Coche.class).list();
             transaction.commit();
