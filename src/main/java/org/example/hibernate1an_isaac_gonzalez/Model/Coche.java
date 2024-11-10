@@ -1,10 +1,12 @@
 package org.example.hibernate1an_isaac_gonzalez.Model;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "coches")
-public class Coche {
+public class Coche implements Serializable {
     //atributos de la clase
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,12 +21,14 @@ public class Coche {
     @Column(name="tipo")
     private String tipo;
 
+    @OneToMany(mappedBy = "coche", cascade = CascadeType.ALL)
+    private List<Multa> multas; //Un coche puede tener muchas multas
+
     //constructores
     public Coche() {
     }
 
     public Coche(String matricula, String marca, String modelo, String tipo) {
-        this.id = id;
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
@@ -73,7 +77,13 @@ public class Coche {
         this.tipo = tipo;
     }
 
-    //metodo to String
+    public List<Multa> getMultas() {
+        return multas;
+    }
+
+    public void setMultas(List<Multa> multas) {
+        this.multas = multas;
+    }
 
     @Override
     public String toString() {
@@ -83,6 +93,7 @@ public class Coche {
                 ", marca='" + marca + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", tipo='" + tipo + '\'' +
+                ", multas=" + multas +
                 '}';
     }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="ventanaGestion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="565.0" style="-fx-background-color: #b2b9a3;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hibernate1an_isaac_gonzalez.Controller.GestionController">
+<AnchorPane fx:id="ventanaGestion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="565.0" style="-fx-background-color: #b2b9a3;" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.hibernate1an_isaac_gonzalez.Controller.CocheController">
   <children>
     <TextField fx:id="matriculaTF" layoutX="105.0" layoutY="69.0" />
     <TextField fx:id="marcaTF" layoutX="105.0" layoutY="128.0" />

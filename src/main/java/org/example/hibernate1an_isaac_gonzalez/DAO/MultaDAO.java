@@ -12,5 +12,5 @@ public interface MultaDAO {
 
     void eliminarMulta(Multa multa, Session session);
 
-    List<Multa> obtenerMulta(Session session);
+    List<Multa> obtenerMulta(Session session, String matricula);
 }

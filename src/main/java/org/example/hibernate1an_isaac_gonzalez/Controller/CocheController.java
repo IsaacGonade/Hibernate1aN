@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class GestionController implements Initializable {
+public class CocheController implements Initializable {
 
     @FXML
     private ComboBox<String> cbTipo;
@@ -204,16 +204,22 @@ public class GestionController implements Initializable {
 
     @FXML
     void onVerMultas(ActionEvent event) throws IOException {
-        if<<
-        //carga el siguiente formulario
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(App.class.getResource("Multa.fxml"));
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(loader.load()));
-        newStage.sizeToScene();
-        newStage.show();
-        Stage currentStage = (Stage) ventanaGestion.getScene().getWindow();
-        currentStage.close();
+        if (matriculaTF.getText().isEmpty()){
+            Alerts.mostrarError("Debes seleccionar una matricula");
+        } else {
+            String matricula = matriculaTF.getText();
+            //carga el siguiente formulario
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("Multa.fxml"));
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(loader.load()));
+            MultaController multaController = loader.getController();
+            multaController.cargarDatos(matricula);
+            newStage.sizeToScene();
+            newStage.show();
+            Stage currentStage = (Stage) ventanaGestion.getScene().getWindow();
+            currentStage.close();
+        }
     }
 
     //metodo para meter los datos de un coche

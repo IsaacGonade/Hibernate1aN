@@ -16,7 +16,7 @@ VALUES ('1234AAA', 'Audi', 'Q5', 'SUV'),
  ('9876CCC', 'Renault', 'Clio', 'SUV');
 
 
-CREATE TABLE IF NOT EXISTS multas (
+CREATE TABLE multas (
   id_multa integer unsigned NOT NULL AUTO_INCREMENT,
   precio DOUBLE NOT NULL,
   fecha DATE DEFAULT NULL,

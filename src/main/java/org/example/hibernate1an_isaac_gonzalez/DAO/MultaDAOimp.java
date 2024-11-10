@@ -25,16 +25,16 @@ public class MultaDAOimp implements MultaDAO{
 
     @Override
     public void modificarMulta(Multa multaVieja, Multa multaNueva, Session session) {
-        /*Transaction transaction = null;
+        Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
 
             //Selecciono el id del coche viejo
-            Coche multaSeleccionada = session.get(Coche.class, multaVieja.getId());
+            Multa multaSeleccionada = session.get(Multa.class, multaVieja.getId());
 
             //Cambio los campos por los nuevos
-            multaSeleccionada.setMatricula(multaNueva.getPrecio());
-            multaSeleccionada.setMarca(multaNueva.getFecha());
+            multaSeleccionada.setPrecio(multaNueva.getPrecio());
+            multaSeleccionada.setFecha(multaNueva.getFecha());
 
             //actualizo el coche
             session.update(multaSeleccionada);
@@ -44,7 +44,7 @@ public class MultaDAOimp implements MultaDAO{
             if (transaction != null) {
                 transaction.rollback();
             }
-        }*/
+        }
     }
 
     @Override
@@ -52,10 +52,10 @@ public class MultaDAOimp implements MultaDAO{
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            //selecciono el id del coche seleccionado en la tabla
-            Coche cocheSeleccionado = session.get(Coche.class, multa.getId());
-            //elimino el coche seleccionado
-            session.delete(cocheSeleccionado);
+            //selecciono el id de la multa seleccionada en la tabla
+            Multa multaSeleccionada = session.get(Multa.class, multa.getId());
+            //elimino la multa seleccionado
+            session.delete(multaSeleccionada);
             transaction.commit();
             session.clear();
         } catch (Exception e) {
@@ -66,13 +66,13 @@ public class MultaDAOimp implements MultaDAO{
     }
 
     @SuppressWarnings("unchecked")
-    public List<Multa> obtenerMulta(Session session) {
+    public List<Multa> obtenerMulta(Session session, String matricula) {
         Transaction transaction = null;
         List<Multa> multas = null;
         try{
             //obtengo todos los coches y los muestro en la tabla
             transaction = session.beginTransaction();
-            multas = session.createQuery("from Coche").list();
+            multas = session.createQuery("from Multa where matricula= '" + matricula + "'", Multa.class).getResultList();
             transaction.commit();
         } catch (Exception e) {
             if(transaction != null)

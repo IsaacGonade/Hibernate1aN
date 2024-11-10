@@ -74,12 +74,13 @@ public class CocheDAOImp implements CocheDAO{
         try{
             //obtengo todos los coches y los muestro en la tabla
             transaction = session.beginTransaction();
-            coches = session.createQuery("from Coche").list();
+            coches = session.createQuery("from Coche", Coche.class).list();
             transaction.commit();
         } catch (Exception e) {
             if(transaction != null)
                 transaction.rollback();
         }
+        session.clear();
         return coches;
     }
 }
