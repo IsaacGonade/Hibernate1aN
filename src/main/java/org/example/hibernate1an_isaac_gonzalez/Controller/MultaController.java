@@ -167,7 +167,7 @@ public class MultaController implements Initializable {
                 return;
             }
 
-            //MultaDAOimp.modificarMulta(multaSeleccionada, multa, session);
+            MultaDAOimp.modificarMulta(multaSeleccionada, multa, session);
 
             cargarDatos(cocheMulta);
         } catch (Exception e){

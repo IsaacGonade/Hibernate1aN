@@ -23,8 +23,7 @@ public class MultaDAOimp implements MultaDAO{
         }
     }
 
-    @Override
-    public void modificarMulta(Multa multaVieja, Multa multaNueva, Session session) {
+    public static void modificarMulta(Multa multaVieja, Multa multaNueva, Session session) {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();

@@ -8,7 +8,7 @@ import java.util.List;
 public interface MultaDAO {
     void insertarMulta(Multa multa, Session session);
 
-    void modificarMulta(Multa multaVieja, Multa multaNueva, Session session);
+    static void modificarMulta(Multa multaVieja, Multa multaNueva, Session session) {}
 
     void eliminarMulta(Multa multa, Session session);
 
